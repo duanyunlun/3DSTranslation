@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29025.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3DSTranslationTool", "3DSTranslationTool.csproj", "{50E6A4F4-52FF-44B9-A89E-1D3E14C416F0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNet3dsToolkit", "Dependency\Project\DotNet3dsToolkit\DotNet3dsToolkit.csproj", "{C26566FC-0DB1-432E-B7C4-651B0AFA6D84}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{50E6A4F4-52FF-44B9-A89E-1D3E14C416F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50E6A4F4-52FF-44B9-A89E-1D3E14C416F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50E6A4F4-52FF-44B9-A89E-1D3E14C416F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50E6A4F4-52FF-44B9-A89E-1D3E14C416F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C26566FC-0DB1-432E-B7C4-651B0AFA6D84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C26566FC-0DB1-432E-B7C4-651B0AFA6D84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C26566FC-0DB1-432E-B7C4-651B0AFA6D84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C26566FC-0DB1-432E-B7C4-651B0AFA6D84}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FA2657B5-6058-4FA8-8CD8-1CE05EEDD0C8}
+	EndGlobalSection
+EndGlobal
