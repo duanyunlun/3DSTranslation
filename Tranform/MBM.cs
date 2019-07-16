@@ -136,10 +136,27 @@ public static class MBM
                                    select new XElement("entry", idattr, source, target));
     }
 
-    public static string ConvertToLittleEndian(this string original)
+    public static unsafe string BigEndianToLittleEndian(this string original)
     {
-        StringBuilder sb = new StringBuilder(original);
-        return original.Length > 2 ? "" : original;
+        if (string.IsNullOrEmpty(original))
+            return original;
+
+        original = original.Length % 2 == 0 ? original : "0" + original;
+        int length = original.Length;
+        char[] ar = original.Reverse().ToArray();
+
+        fixed (char* p = ar)
+        {
+            for (int i = 0; i < length - 1; i += 2)
+            {
+                ref char x = ref p[i];
+                ref char y = ref p[i + 1];
+                char temp = x;
+                x = y;
+                y = temp;
+            }
+        }
+        return new string(ar);
     }
 
     /// <summary>
