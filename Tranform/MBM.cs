@@ -136,12 +136,6 @@ public static class MBM
                                    select new XElement("entry", idattr, source, target));
     }
 
-    public static string ConvertToLittleEndian(this string original)
-    {
-        StringBuilder sb = new StringBuilder(original);
-        return original.Length > 2 ? "" : original;
-    }
-
     /// <summary>
     /// 根据真4的内容格式获取对话长度size
     /// </summary>

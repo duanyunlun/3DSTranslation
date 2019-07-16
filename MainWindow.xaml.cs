@@ -36,7 +36,7 @@ namespace _3DSTranslationTool
             string[] Chinese_Pairs = File.ReadAllLines(".\\CodeTable\\Shift-JIS-A.txt");
             Dictionary<char, int> chineseDic = Chinese_Pairs.Where(pair => pair.Length > 0)
                                                             .ToDictionary(pair => pair.Split(new string[] { "=>" }, StringSplitOptions.None)[1].ToCharArray().First(), 
-                                                                          pair => int.Parse(pair.Split(new string[] { "=>" }, StringSplitOptions.None)[0].ConvertToLittleEndian(), NumberStyles.HexNumber));
+                                                                          pair => int.Parse(pair.Split(new string[] { "=>" }, StringSplitOptions.None)[0], NumberStyles.HexNumber));
             MBM.Init(FWHW_Pairs.ToDictionary(p => p[0], p => p[1]),
                      FWHW_Pairs.ToDictionary(p => p[1], p => p[0]),
                      chineseDic);
