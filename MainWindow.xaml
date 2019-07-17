@@ -35,11 +35,12 @@
                 </TreeView.Resources>
             </TreeView>
 
-            <StatusBar DockPanel.Dock="Bottom" Height="40" Margin="-300,0,-1,0" VerticalAlignment="Bottom" Width="1273"/>
+            <StatusBar x:Name="CurrentTextStatus" DockPanel.Dock="Bottom" Height="40" Margin="0,0,2,0" VerticalAlignment="Bottom" Width="1273" HorizontalAlignment="Right"/>
 
-            <TextBlock Background="#FFB2B2B2" Width="968" IsEnabled="False">
-
-            </TextBlock>
+            <DockPanel DockPanel.Dock="Right">
+                <TextBlock x:Name="OriginalText" Background="#FFFFFDE4" Width="485" IsEnabled="False" HorizontalAlignment="Left"/>
+                <TextBlock x:Name="TranslatedText" Background="#FFDCFFDC" Width="485" IsEnabled="False" HorizontalAlignment="Right" DockPanel.Dock="Right"/>
+            </DockPanel>
         </DockPanel>
     </Grid>
 </Window>
