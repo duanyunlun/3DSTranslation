@@ -77,7 +77,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="HexBrowser.xaml.cs">
+      <DependentUpon>HexBrowser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TreeView\DirectoryRecord.cs" />
     <Compile Include="Utility\ExtensionMethod.cs" />
+    <Page Include="HexBrowser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -86,9 +94,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Tranform\MBM.cs" />
-    <Compile Include="Tranform\PO.cs" />
-    <Compile Include="Tranform\TransferHandler.cs" />
+    <Compile Include="Transform\MBM.cs" />
+    <Compile Include="Transform\PO.cs" />
+    <Compile Include="Transform\TransferHandler.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -128,6 +136,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CodeTable\FW-HW.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\folder.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>

@@ -1,11 +1,45 @@
-﻿<Window x:Class="_3DSTranslationTool.MainWindow"
+﻿<Window x:Name="MainWindowForTranslation" x:Class="_3DSTranslationTool.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_3DSTranslationTool"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid Background="Black">
+        Title="3DS文本翻译器" Height="720" Width="1280">
+    <Grid x:Name="MainGrid" Background="#FFA2A2A2">
+        <DockPanel>
+            <Menu x:Name="MainMenu" DockPanel.Dock="Top" Height="30">
+                <MenuItem Header="文件" Height="30">
+                    <MenuItem Name="OpenFile" Header="打开"></MenuItem>
+                    <MenuItem Name="CloseFile" Header="关闭"></MenuItem>
+                    <MenuItem Name="FileHistory" Header="最近文件"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="编辑" Height="30"></MenuItem>
+                <MenuItem Header="选项" Height="30"></MenuItem>
+                <MenuItem Header="关于" Height="30"></MenuItem>
+            </Menu>
+
+            <TreeView x:Name="DirectoryView" Width="300" HorizontalAlignment="Left" Margin="0,0,0,39" Background="White" AllowDrop="True">
+                <TreeView.Resources>
+                    <HierarchicalDataTemplate DataType="{x:Type local:DirectoryRecord}"
+                                  ItemsSource="{Binding Directories}" >
+                        <StackPanel Orientation="Horizontal">
+                            <Image Width="16" Height="16" >
+                                <Image.OpacityMask>
+                                    <ImageBrush ImageSource="Resources/folder.png"/>
+                                </Image.OpacityMask>
+                            </Image>
+                            <TextBlock Text="{Binding Info.Name}"/>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                </TreeView.Resources>
+            </TreeView>
+
+            <StatusBar DockPanel.Dock="Bottom" Height="40" Margin="-300,0,-1,0" VerticalAlignment="Bottom" Width="1273"/>
+
+            <TextBlock Background="#FFB2B2B2" Width="968" IsEnabled="False">
+
+            </TextBlock>
+        </DockPanel>
     </Grid>
 </Window>

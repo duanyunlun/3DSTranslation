@@ -23,7 +23,7 @@ public static class MBM
     private static bool isInit;
     private static Encoding tranferEncoding;
     private static Dictionary<char, char> dicFullWidth2HalfWidth, dicHalfWidth2FullWidth;
-    private static Dictionary<char, int> dicForSelectChineseWord;
+    private static Dictionary<char, string> dicForSelectChineseWord;
 
     /// <summary>
     /// 初始化码表
@@ -33,7 +33,7 @@ public static class MBM
     /// <param name="chineseCode">中文字符</param>
     public static void Init(Dictionary<char, char> fullWidth2HalfWidth,
                             Dictionary<char, char> halfWidth2FullWidth,
-                            Dictionary<char, int> chineseCode)
+                            Dictionary<char, string> chineseCode)
     {
         if (isInit)
             return;
@@ -132,7 +132,7 @@ public static class MBM
         return new XElement("mbm", from entry in entries
                                    let idattr = new XAttribute("id", entry.Id)
                                    let source = new XElement("source", entry.Text)
-                                   let target = new XElement("target", entry.Text)
+                                   let target = new XElement("target", Regex.Replace(Regex.Replace(entry.Text, @"{F816}", ""), @"\{F817}.+?\{F818}", ""))
                                    select new XElement("entry", idattr, source, target));
     }
 
@@ -160,7 +160,7 @@ public static class MBM
     }
 
     /// <summary>
-    /// 根据真4的内容格式获取对话长度size
+    /// 获取控制符的字节长度
     /// </summary>
     /// <param name="byte0"></param>
     /// <param name="byte1"></param>
@@ -189,21 +189,63 @@ public static class MBM
     }
 
     /// <summary>
-    /// 将字符串转换成字节数组，此处需要注意与码表对应
+    /// 将字符串转换成字节数组，此处需要注意与自定义码表对应
     /// </summary>
-    /// <param name="str"></param>
+    /// <param name="strForConvert"></param>
     /// <returns></returns>
-    static byte[] ConvertStringToBytes(string str)
+    static byte[] ConvertStringToBytes(string strForConvert)
     {
-        return Regex.Split(str.Replace(@"\0", "{0000}") + "{FFFF}", "{([0-9A-F]{4}(?:,-?[0-9]+)*)}").SelectMany((s, i) =>
+        string[] splitResult = Regex.Split(strForConvert.Replace(@"\0", "{0000}") + "{FFFF}", "{([0-9A-F]{4}(?:,-?[0-9]+)*)}");
+        return splitResult.SelectMany((singleStr, index) =>
         {
-            if (i % 2 == 0)
-                return tranferEncoding.GetBytes(HW_FW_Transfer(s, dicHalfWidth2FullWidth));
-            var byte0 = Convert.ToByte(s.Substring(0, 2), 16);
-            var byte1 = Convert.ToByte(s.Substring(2, 2), 16);
+            if (index % 2 == 0)
+            {
+                byte[] transferResult = transferWord2Code(singleStr);
+                return transferResult;
+                //return tranferEncoding.GetBytes(HW_FW_Transfer(singleStr, dicHalfWidth2FullWidth));
+            }
+
+            var byte0 = Convert.ToByte(singleStr.Substring(0, 2), 16);
+            var byte1 = Convert.ToByte(singleStr.Substring(2, 2), 16);
             var sizes = getCodeSizes(byte0, byte1);
-            return new[] { byte0, byte1 }.Concat(s.Split(',').Skip(1).Select(int.Parse).Zip(sizes, (num, size) =>
-                size == 1 ? BitConverter.GetBytes((short)num) : BitConverter.GetBytes(num)).SelectMany(x => x));
+            return new[] { byte0, byte1 }.Concat(singleStr.Split(',')
+                                         .Skip(1)
+                                         .Select(int.Parse)
+                                         .Zip(sizes, (num, size) => size == 1 ? BitConverter.GetBytes((short)num) : BitConverter.GetBytes(num)).SelectMany(x => x));
+        }).ToArray();
+    }
+
+    /// <summary>
+    /// 对码表
+    /// </summary>
+    /// <param name="singleStr"></param>
+    /// <returns></returns>
+    private static byte[] transferWord2Code(string singleStr)
+    {
+        return singleStr.SelectMany(ch =>
+        {
+            byte[] temp;
+            if (dicForSelectChineseWord.ContainsKey(ch))
+            {
+                string code = dicForSelectChineseWord[ch];
+                if (code.Length == 2)
+                {
+                    temp = new byte[1] { Convert.ToByte(code, 16) };
+                }
+                else
+                {
+                    var byte0 = Convert.ToByte(code.Substring(0, 2), 16);
+                    var byte1 = Convert.ToByte(code.Substring(2, 2), 16);
+
+                    temp = new byte[2] { byte0, byte1 };
+                }
+                return temp;
+            }
+            else
+            {
+                temp = new byte[0];
+                return temp;
+            }
         }).ToArray();
     }
 

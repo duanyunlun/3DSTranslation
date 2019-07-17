@@ -16,7 +16,7 @@ public static class PO
         };
 
         XElement XML = XElement.Load(file);
-        int c = 0;
+        int count = 0;
         foreach (XElement entry in XML.Descendants("entry"))
         {
             string target;
@@ -26,8 +26,8 @@ public static class PO
             target = entry.Element("target").Value;
             if (string.IsNullOrEmpty(target))
                 target = "";
-            POExport(POHeader, source.Replace("{F801}", "\n"), target.Replace("{F801}", "\n"), c);
-            c++;
+            POExport(POHeader, source.Replace("{F801}", "\n"), target.Replace("{F801}", "\n"), count);
+            count++;
         }
         POWrite(POHeader, file.Replace(".xml", ""));
     }

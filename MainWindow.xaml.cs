@@ -25,18 +25,23 @@ namespace _3DSTranslationTool
         public MainWindow()
         {
             InitializeComponent();
-            initDictionary();
-
-            TransferHandler.XML2MBM("F:\\e001.mbm.xml");
+            MBM_Init();
         }
 
-        private void initDictionary()
+        private void recreateOriginalText()
+        {
+            TransferHandler.MBM2XML("F:\\smt4_jpn\\RomFS");
+            TransferHandler.XML2PO("F:\\smt4_jpn\\RomFS");
+        }
+
+        private void MBM_Init()
         {
             string[] FWHW_Pairs = File.ReadAllLines(".\\CodeTable\\FW-HW.txt").Where(str => str.Length == 2).ToArray();
             string[] Chinese_Pairs = File.ReadAllLines(".\\CodeTable\\Shift-JIS-A.txt");
-            Dictionary<char, int> chineseDic = Chinese_Pairs.Where(pair => pair.Length > 0)
-                                                            .ToDictionary(pair => pair.Split(new string[] { "=>" }, StringSplitOptions.None)[1].ToCharArray().First(), 
-                                                                          pair => int.Parse(pair.Split(new string[] { "=>" }, StringSplitOptions.None)[0].BigEndianToLittleEndian(), NumberStyles.HexNumber));
+            Dictionary<char, string> chineseDic = Chinese_Pairs.Where(pair => pair.Length > 0)
+                                                               .ToDictionary(pair => pair.Split(new string[] { "=>" }, StringSplitOptions.None)[1].ToCharArray().First(),
+                                                                             pair => pair.Split(new string[] { "=>" }, StringSplitOptions.None)[0]);
+
             MBM.Init(FWHW_Pairs.ToDictionary(p => p[0], p => p[1]),
                      FWHW_Pairs.ToDictionary(p => p[1], p => p[0]),
                      chineseDic);
