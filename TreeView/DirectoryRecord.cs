@@ -20,8 +20,8 @@ namespace _3DSTranslationTool
         {
             get
             {
-                return from di in Info.GetDirectories("*", SearchOption.TopDirectoryOnly)
-                       select new DirectoryRecord { Info = di };
+                return from directoryInfo in Info.GetDirectories("*", SearchOption.TopDirectoryOnly)
+                       select new DirectoryRecord { Info = directoryInfo };
             }
         }
     }
