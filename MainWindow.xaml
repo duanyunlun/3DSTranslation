@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_3DSTranslationTool"
         mc:Ignorable="d"
-        Title="3DS翻译测试工具" Height="720" Width="1280" MinWidth="1280" MinHeight="720">
+        Title="3DS翻译测试工具" Height="720" Width="1280" MinWidth="1280" MinHeight="720" Topmost="True">
     <Grid x:Name="MainGrid" Background="#FFA2A2A2" Margin="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="240*" MinWidth="320" MaxWidth="360"/>
             <ColumnDefinition Width="640*"/>
         </Grid.ColumnDefinitions>
+        
         <GridSplitter Grid.Column="0" Width="2" Background="Black" Panel.ZIndex="2"/>
 
         <Border x:Name="LeftGridBorder" Grid.Row="0" BorderBrush="Black" BorderThickness="1" MinWidth="240">
@@ -71,24 +72,60 @@
                 <Label Grid.Row="1" x:Name="Label_OriginalRomFile" Content="Rom文件" HorizontalAlignment="Left" Margin="10,17,0,18" Padding="0" Width="51"/>
                 <TextBox Grid.Row="1" x:Name="TextBox_OrignalRomFilePath" Margin="85,12,127,14" TextWrapping="Wrap" VerticalContentAlignment="Center" Height="24" VerticalAlignment="Center"/>
                 <Button Grid.Row="1" x:Name="Btn_SelectRomPath" Content="浏览文件" Margin="0,13,19,13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="80"/>
-                <Label Grid.Row="1" x:Name="Label_TargetRomExtractPath" Content="解压目录" Margin="22,17,401,18" Padding="0" Grid.Column="1"/>
+                <Label Grid.Row="1" x:Name="Label_TargetRomExtractPath" Content="解压目录" Margin="22,17,0,18" Padding="0" Grid.Column="1" HorizontalAlignment="Left" Width="48"/>
                 <TextBox Grid.Row="1" x:Name="TextBox_TargetRomExtractPath" Margin="95,13,136,13" TextWrapping="Wrap" VerticalContentAlignment="Center" Grid.Column="1"/>
                 <Button Grid.Row="1" x:Name="Btn_SelectTargetExtractPath" Content="浏览目录" Margin="0,13,31,13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.488,0.583" HorizontalAlignment="Right" Width="80" Grid.Column="1"/>
 
                 <!-- 第三行 -->
                 <Label Grid.Row="2" x:Name="Label_OriginalTextExtension" Content="原始文本扩展名" HorizontalAlignment="Left" Margin="10,17,0,0" VerticalAlignment="Top" Padding="0" Height="15" ToolTip="提示：请以&quot;*.mbm,*.tbb&quot;此类格式填写，以逗号分隔，必须全为半角符号"/>
                 <TextBox Grid.Row="2" x:Name="TextBox_OriginalTextExtension" Margin="110,13,102,13" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="24"/>
-                <Label Grid.Row="2" x:Name="Label_TargetTextExportPath" Content="导出目录" Margin="22,17,401,18" Padding="0" Grid.Column="1"/>
+                <Label Grid.Row="2" x:Name="Label_TargetTextExportPath" Content="导出目录" Margin="22,17,0,18" Padding="0" Grid.Column="1" HorizontalAlignment="Left" Width="48"/>
                 <TextBox Grid.Row="2" x:Name="TextBox_TargetTextExportPath" Margin="95,13,136,13" TextWrapping="Wrap" VerticalContentAlignment="Center" Grid.Column="1"/>
                 <Button Grid.Row="2" x:Name="Btn_SelectTargetTextExportPath" Content="浏览目录" Margin="0,13,31,13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.488,0.583" HorizontalAlignment="Right" Width="80" Grid.Column="1"/>
 
                 <!-- 第四行 -->
                 <Label Grid.Row="3" x:Name="Label_OriginalPicExtension" Content="原始图片扩展名" HorizontalAlignment="Left" Margin="10,17,0,0" VerticalAlignment="Top" Padding="0" Height="15" ToolTip="提示：请以&quot;*.png,*.stex&quot;此类格式填写，以逗号分隔，必须全为半角符号"/>
                 <TextBox Grid.Row="3" x:Name="TextBox_OriginalPicExtension" Margin="110,13,102,13" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="24"/>
-                <Label Grid.Row="3" x:Name="Label_TargetPicExportPath" Content="导出目录" Margin="22,17,401,18" Padding="0" Grid.Column="1"/>
+                <Label Grid.Row="3" x:Name="Label_TargetPicExportPath" Content="导出目录" Margin="22,17,0,18" Padding="0" Grid.Column="1" HorizontalAlignment="Left" Width="48"/>
                 <TextBox Grid.Row="3" x:Name="TextBox_TargetPicExportPath" Margin="95,13,136,13" TextWrapping="Wrap" VerticalContentAlignment="Center" Grid.Column="1"/>
                 <Button Grid.Row="3" x:Name="Btn_SelectTargetPicExportPath" Content="浏览目录" Margin="0,13,31,13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.488,0.583" HorizontalAlignment="Right" Width="80" Grid.Column="1"/>
 
+                <!-- 第五行 -->
+                <Label Grid.Row="4" x:Name="Label_OriginalFontPath" Content="原始字库文件" HorizontalAlignment="Left" Margin="10,17,0,0" VerticalAlignment="Top" Padding="0" Height="15" ToolTip="提示：请以&quot;*.png,*.stex&quot;此类格式填写，以逗号分隔，必须全为半角符号"/>
+                <TextBox Grid.Row="4" x:Name="TextBox_OriginalFontPath" Margin="97,13,115,13" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="24"/>
+                <Button Grid.Row="4" x:Name="Btn_SelectOriginalFontPath" Content="浏览文件" Margin="0,13,19,13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.488,0.583" HorizontalAlignment="Right" Width="80" Grid.Column="0"/>
+                <Label Grid.Row="4" x:Name="Label_CodeTablePath" Content="码表文件" Margin="22,17,0,18" Padding="0" Grid.Column="1" HorizontalAlignment="Left" Width="48"/>
+                <TextBox Grid.Row="4" x:Name="TextBox_CodeTablePath" Margin="95,13,136,13" TextWrapping="Wrap" VerticalContentAlignment="Center" Grid.Column="1"/>
+                <Button Grid.Row="4" x:Name="Btn_SelectCodeTablePath" Content="浏览文件" Margin="0,13,31,13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.488,0.583" HorizontalAlignment="Right" Width="80" Grid.Column="1"/>
+
+                <GridSplitter Grid.Row="5" Grid.ColumnSpan="2" Background="#FF5B5B5B" Height="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" IsEnabled="False"/>
+
+                <!-- 第六行 -->
+                <Label Grid.Row="5" x:Name="Label_BuildDirectory" Content="解包目录" HorizontalAlignment="Left" Margin="10,17,0,18" Padding="0" Width="51"/>
+                <TextBox Grid.Row="5" x:Name="TextBox_BuildDirectory" Margin="85,12,127,14" TextWrapping="Wrap" VerticalContentAlignment="Center" Height="24" VerticalAlignment="Center"/>
+                <Button Grid.Row="5" x:Name="Btn_SelectBuildPath" Content="浏览目录" Margin="0,13,19,13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="80"/>
+                <Label Grid.Row="5" x:Name="Label_RomBuildPath" Content="封包路径" Margin="22,17,0,18" Padding="0" Grid.Column="1" HorizontalAlignment="Left" Width="48"/>
+                <TextBox Grid.Row="5" x:Name="TextBox_RomBuildPath" Margin="95,13,136,13" TextWrapping="Wrap" VerticalContentAlignment="Center" Grid.Column="1"/>
+                <Button Grid.Row="5" x:Name="Btn_SelectRomBuildPath" Content="浏览文件" Margin="0,13,31,13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.488,0.583" HorizontalAlignment="Right" Width="80" Grid.Column="1"/>
+
+                <!-- 第七行 -->
+                <Label Grid.Row="6" Grid.Column="0" x:Name="Label_OriginalText" Content="原文" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+                <Label Grid.Row="6" Grid.Column="0" x:Name="Label_OriginalShowFont" Content="字体" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="94,0,0,0" HorizontalContentAlignment="Right"></Label>
+                <ComboBox Grid.Row="6" Grid.Column="0" Margin="128,2.5,0,0" MaxHeight="20" VerticalAlignment="Top" MaxWidth="160" HorizontalAlignment="Left" Width="100"/>
+                <Label Grid.Row="6" Grid.Column="0" x:Name="Label_OriginalShowFontSize" Content="大小" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="265,0,0,0"></Label>
+                <ComboBox Grid.Row="6" Grid.Column="0" Margin="300,2.5,0,0" MaxHeight="20" VerticalAlignment="Top" MaxWidth="160" HorizontalAlignment="Left" Width="100"/>
+                <ListView Grid.Row="6" Grid.Column="0" x:Name="List_OriginalText" Margin="0,25"/>
+                <Label Grid.Row="6" Grid.Column="0" x:Name="Label_OrignalTextStatus" Content="状态栏" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+
+                <GridSplitter Grid.Row ="6"  Grid.Column="0" Background="#FF5B5B5B" IsEnabled="False" Width="2" Margin="0,0,-1,0"/>
+
+                <Label Grid.Row="6" Grid.Column="1" x:Name="Label_TranslatedText" Content="译文" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+                <Label Grid.Row="6" Grid.Column="1" x:Name="Label_TranslateShowFont" Content="字体" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="94,0,0,0" HorizontalContentAlignment="Right"></Label>
+                <ComboBox Grid.Row="6" Grid.Column="1" Margin="128,2.5,0,0" MaxHeight="20" VerticalAlignment="Top" MaxWidth="160" HorizontalAlignment="Left" Width="100"/>
+                <Label Grid.Row="6" Grid.Column="1" x:Name="Label_TranslateShowFontSize" Content="大小" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="265,0,0,0"></Label>
+                <ComboBox Grid.Row="6" Grid.Column="1" Margin="300,2.5,0,0" MaxHeight="20" VerticalAlignment="Top" MaxWidth="160" HorizontalAlignment="Left" Width="100"/>
+                <ListView Grid.Row="6" Grid.Column="1" x:Name="List_TranslatedText" Margin="0,25"/>
+                <Label Grid.Row="6" Grid.Column="1" x:Name="Label_TranslatedTextStatus" Content="状态栏" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
             </Grid>
         </Border>
     </Grid>
